@@ -5,6 +5,7 @@ Shows SAT Question of the Day, question classification, possible answers, and re
 
 Includes HTML file that uses iframes and a Python file*; both give an output like this:
 
+<pre><code>
                    ----SAT QOTD----
 ----Last updated: Fri Feb 28 2014 21:19:10 GMT+0000 (UTC)----
 
@@ -19,7 +20,7 @@ The ballet stage is a bright, seemingly weightless world where gravity is contin
 (C) unbalanced
 (D) reflected
 (E) defied
-
+</code></pre>
 
 SAT is a registered trademark of the College Board, which does not endorse or support this project.
 
