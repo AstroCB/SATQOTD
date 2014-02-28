@@ -25,9 +25,13 @@ The ballet stage is a bright, seemingly weightless world where gravity is contin
 SAT is a registered trademark of the College Board, which does not endorse or support this project.
 
 Checklist:
+
 -Fix input mechanism for Python
+
 -Add answering ability for Python
+
 -Add answer checking and explanation for Python
+
 -Cleanup interface for HTML
 
 
