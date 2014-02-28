@@ -5,8 +5,8 @@ Shows SAT Question of the Day, question classification, possible answers, and re
 
 Includes HTML file that uses iframes and a Python file*; both give an output like this:
 
-<pre><code>
-                   ----SAT QOTD----
+
+<pre><code>                   ----SAT QOTD----
 ----Last updated: Fri Feb 28 2014 21:19:10 GMT+0000 (UTC)----
 
 Hello. Welcome to your daily SAT training. Today is Feb 28. Your mission, should you choose to accept it, will be to answer this question, which is classified as: Critical Reading > Sentence Completions.
