@@ -99,7 +99,7 @@ resp = True
 if resp == True:
 	print question
 
-aresults = results["Answer Data"]
+	aresults = results["Answer Data"]
 
-for i in aresults:
-	print i['Answers']
+	for i in aresults:
+		print i['Answers']
