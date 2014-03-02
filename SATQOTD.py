@@ -13,7 +13,6 @@ first_results = qresults[0]
 date = first_results['Date']
 directions = first_results['Directions']
 
-
 second_results = qresults[1]
 stats = second_results['Stats']
 

@@ -2,13 +2,16 @@ import json
 import urllib
 import time
 
-stats = 0
+people = 0
 
-while stats < 5000:
+check_num = 3000 #raw_input("Enter number of people to check for")
+
+while people < check_num:
 	results = json.load(urllib.urlopen("http://www.kimonolabs.com/api/a9tmzsfm?apikey=74ef20963a82fa61fe92928fd750f7ce"))
 
 	results = results['results']
 	results = results['Question Data']
+	time.sleep(1.5)
 	results = results[1]
 
 	stats = results['Stats']
@@ -33,8 +36,8 @@ while stats < 5000:
 		if j != ",":
 			temp += j
 
-	stats = int(temp)
-	time.sleep(120)
+	people = int(temp)
+	time.sleep(5)
 
 results = json.load(urllib.urlopen("http://www.kimonolabs.com/api/a9tmzsfm?apikey=74ef20963a82fa61fe92928fd750f7ce"))
-print results.lastsuccess
+print results['lastsuccess']
