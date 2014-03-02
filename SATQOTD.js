@@ -1,34 +1,34 @@
 var req = new XMLHttpRequest();
   req.open('GET', 'http://www.kimonolabs.com/api/a9tmzsfm?apikey=74ef20963a82fa61fe92928fd750f7ce', true);
   req.onload = function(e) {
-    if (req.readyState == 4) {
-      if(req.status == 200) {
-    	var results = JSON.parse(req.responseText);
-		console.log("                   ----" + results['name'] + "----");
-		console.log("----Last updated: " + results['lastsuccess'] + "----\n");
+      if(req.readyState === 4 && req.status == 200) {
+        var results = JSON.parse(req.responseText);
+        console.log("                   ----" + results.name + "----");
+		console.log("----Last updated: " + results.lastsuccess + "----\n");
 
-		results = results['results'];
+		results = results.results;
 		var qresults = results['Question Data'];
 		var first_results = qresults[0];
 
 		var date = first_results['Date'];
-		var directions = first_results['Directions'];
+		var directions = first_results.Directions;
 
 
 		var second_results = qresults[1];
-		var stats = second_results['Stats'];
+		var stats = second_results.Stats;
 
 		var third_results = qresults[2];
 		var typeques = third_results['Type of Question'];
-		var question = third_results['Question'];
+		var question = third_results.Question;
 		var tries = "";
 		var percent = "";
 
 		var checking = true;
 		var i = 0;
+        var x = 0;
 
 		while(checking){
-			x = stats[i]
+            x = stats[i];
 			if(x !== " "){
 				tries += x;
 			}else{
@@ -40,12 +40,12 @@ var req = new XMLHttpRequest();
 		checking = true;
 		var now_checking = false;
 
-		x = 0;
 		i = 0;
+        x = 0;
 		var y = 0;
 
 		while(checking){ //This gets a bit complicated; the data I'm parsing reads "xx,xxx responses \nxx% correct"; I'm looking for the 'xx%', so I want to start adding to percent if it's after \n and stop at the space after the '%'; probably a better way to do this
-			for(var x in stats){
+			for(x in stats){
 				if(x === "\n" && y > 0){
 					now_checking = true;
 				}else if(x === "\n"){
@@ -63,6 +63,8 @@ var req = new XMLHttpRequest();
 			}
 		}
 
+        x = 0;
+
 		var temp = "";
 
 		percent = percent.split();
@@ -78,7 +80,7 @@ var req = new XMLHttpRequest();
 
 		temp = "";
 
-		for(var x in date){
+		for(x in date){
 			if(x !== "\n"){
 				temp += x;
 			}else{
@@ -116,13 +118,10 @@ var req = new XMLHttpRequest();
 			console.log(question);
 			var aresults = results["Answer Data"];
 			for(i in aresults){
-				console.log(i['Answers']);
+				console.log(i.Answers);
 			}
 		}
 	}
-}else{
-    console.log('err');
-}
 };
 
 req.onload();
