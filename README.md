@@ -26,7 +26,7 @@ SAT is a registered trademark of the College Board, which does not endorse or su
 
 Checklist:
 
--<s>Fix input mechanism for Python</s>
+-<strike>Fix input mechanism for Python</strike>
 
 -Add answering ability for Python (in progress)
 
