@@ -26,13 +26,10 @@ SAT is a registered trademark of the College Board, which does not endorse or su
 
 Checklist:
 
--Fix input mechanism for Python
+-<s>Fix input mechanism for Python</s>
 
--Add answering ability for Python
+-Add answering ability for Python (in progress)
 
--Add answer checking and explanation for Python
+-Add answer checking and explanation for Python (in progress)
 
--Cleanup interface for HTML
-
-
-*Working on a proper input mechanism, which is currently commented out in the Python file; if you want to give it a go, feel free to do so.
+-Cleanup interface for HTML _(Deprecated: though API format makes HTML w/ iframes impossible, I may do it in pure HTML later)_
