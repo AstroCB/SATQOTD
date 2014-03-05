@@ -32,4 +32,4 @@ Checklist:
 
 -Add answer checking and explanation for Python (in progress)
 
--Cleanup interface for HTML _(Deprecated: though API format makes HTML w/ iframes impossible, I may do it in pure HTML later)_
+-Cleanup interface for HTML _(Deprecated: though API format makes better format in HTML w/ iframes impossible, I may do it in pure HTML later)_
