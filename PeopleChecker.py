@@ -4,12 +4,12 @@ import time
 
 people = 0
 
-check_num = 14700 #or raw_input("Enter number of people to check for:")
+check_num = 21600 #or raw_input("Enter number of people to check for:")
 
 while people < check_num:
-	results = json.load(urllib.urlopen("http://www.kimonolabs.com/api/a9tmzsfm?apikey=74ef20963a82fa61fe92928fd750f7ce"))
+	response = json.load(urllib.urlopen("http://www.kimonolabs.com/api/a9tmzsfm?apikey=74ef20963a82fa61fe92928fd750f7ce"))
 
-	results = results['results']
+	results = response['results']
 	results = results['Question Data']
 	time.sleep(2)
 	results = results[1]
@@ -39,8 +39,8 @@ while people < check_num:
 	people = int(temp)
 	time.sleep(5)
 
-results = json.load(urllib.urlopen("http://www.kimonolabs.com/api/a9tmzsfm?apikey=74ef20963a82fa61fe92928fd750f7ce"))
-finished = results['lastsuccess']
+response = json.load(urllib.urlopen("http://www.kimonolabs.com/api/a9tmzsfm?apikey=74ef20963a82fa61fe92928fd750f7ce"))
+finished = response['lastsuccess']
 
 temp = ""
 checking = True
