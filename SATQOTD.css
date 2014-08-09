@@ -1,0 +1,41 @@
+h1{
+    font-family: Garamond;
+    text-align: center;
+    color: white;
+}
+
+#container{
+    background-color: #09F;
+    padding: 1px;
+}
+
+#data, #first{
+    background-color: #D8DEDC;
+    height: 87%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+}
+
+#date{
+    font-size: 25pt;
+    font-family: Serif;
+}
+
+#intro{
+    font-size: 14pt;
+}
+
+#last{
+    font-size: 10pt;
+}
+
+.answers{
+    padding-left: 3%;
+}
+
+#disclaimer{
+    font-size: 10pt;
+    position: absolute;
+    top: 93%;
+}
