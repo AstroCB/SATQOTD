@@ -22,7 +22,7 @@ The ballet stage is a bright, seemingly weightless world where gravity is contin
 (E) defied
 </code></pre>
 
-SAT is a registered trademark of the College Board, which does not endorse or support this project.
+SAT is a registered trademark of the College Board, which does not endorse or support this project in any way.
 
 Checklist:
 
