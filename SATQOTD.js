@@ -15,7 +15,7 @@ function kimonoCallback(e){
         answers.push(ans[i].Answers);
     }
     for(var i = 0; i < answers.length; i++){
-        $("#first").append("<span class='answers'>" + answers[i] + "</span><br><br><br>");
+        $("#first").append("<span class='answers'>" + answers[i] + "</span><br/><br/>");
     }
     var parsing = true;
     var responses = "";
@@ -49,7 +49,7 @@ function kimonoCallback(e){
     responses = parseInt(responses.split(",").join(""));
     numCorrect = numeral(Math.ceil(responses * numCorrect)).format('0,0');
     
-    $("#stats").append("<p>" + origResp + " people have attempted this question and approximately " + numCorrect + " (" + correct + "%) of them have gotten it right.");
+    $("#stats").append("<p>" + origResp + " people have attempted this question and approximately " + numCorrect + " (" + correct + "%) of them have gotten it right." + "<div id='disclaimer'>SAT is a registered trademark of the College Board and all content on this page is its sole property.</div>");
     $("#stats_button").click(function(){
         $("stats").fadeIn();
     });
