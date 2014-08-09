@@ -3,7 +3,7 @@ SAT QOTD
 
 Shows SAT Question of the Day, question classification, possible answers, and response statistics from the College Board.
 
-Includes HTML file that uses iframes and a Python file*; both give an output like this:
+Example output:
 
 
 <pre><code>                   ----SAT QOTD----
@@ -31,5 +31,3 @@ Checklist:
 -Add answering ability for Python (in progress)
 
 -Add answer checking and explanation for Python (in progress)
-
--_Cleanup interface for HTML (Deprecated: though API format makes better format in HTML w/ iframes impossible, I may do it in pure HTML later)_
