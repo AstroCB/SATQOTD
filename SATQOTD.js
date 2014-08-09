@@ -1,127 +1,56 @@
-var req = new XMLHttpRequest();
-  req.open('GET', 'http://www.kimonolabs.com/api/a9tmzsfm?apikey=74ef20963a82fa61fe92928fd750f7ce', true);
-  req.onload = function(e) {
-      if(req.readyState === 4 && req.status == 200) {
-        var results = JSON.parse(req.responseText);
-        console.log("                   ----" + results.name + "----");
-		console.log("----Last updated: " + results.lastsuccess + "----\n");
+$.ajax({
+    "url":"http://www.kimonolabs.com/api/a9tmzsfm?apikey=74ef20963a82fa61fe92928fd750f7ce&callback=kimonoCallback",
+    "crossDomain": true,
+    "dataType": "jsonp"
+});
 
-		results = results.results;
-		var qresults = results['Question Data'];
-		var first_results = qresults[0];
-
-		var date = first_results['Date'];
-		var directions = first_results.Directions;
-
-
-		var second_results = qresults[1];
-		var stats = second_results.Stats;
-
-		var third_results = qresults[2];
-		var typeques = third_results['Type of Question'];
-		var question = third_results.Question;
-		var tries = "";
-		var percent = "";
-
-		var checking = true;
-		var i = 0;
-        var x = 0;
-
-		while(checking){
-            x = stats[i];
-			if(x !== " "){
-				tries += x;
-			}else{
-				checking = false;
-			}
-			i++;
-		}
-
-		checking = true;
-		var now_checking = false;
-
-		i = 0;
-        x = 0;
-		var y = 0;
-
-		while(checking){ //This gets a bit complicated; the data I'm parsing reads "xx,xxx responses \nxx% correct"; I'm looking for the 'xx%', so I want to start adding to percent if it's after \n and stop at the space after the '%'; probably a better way to do this
-			for(x in stats){
-				if(x === "\n" && y > 0){
-					now_checking = true;
-				}else if(x === "\n"){
-					y += 1;
-				}
-				if(now_checking){
-					if(x === " "){
-						now_checking = false;
-						checking = false;
-					}
-					if(now_checking){
-						percent += x;
-					}
-				}
-			}
-		}
-
-        x = 0;
-
-		var temp = "";
-
-		percent = percent.split();
-
-		for(i in percent){
-			if(i !== " " && i !== "\n"){
-				temp += i;
-			}
-		}
-
-		percent = temp.toString();
-
-
-		temp = "";
-
-		for(x in date){
-			if(x !== "\n"){
-				temp += x;
-			}else{
-				temp += " ";
-			}
-		}
-
-		date = temp;
-
-
-
-		console.log("Hello. Welcome to your daily SAT training. Today is " + date + ". Your mission, should you choose to accept it, will be to answer this question, which is classified as: " + typeques + ".\n");
-		console.log("Warning. This mission is dangerous. " + tries + " people have tried and " + percent + " of them have survived (okay, gotten it correct).\n");
-		console.log("Here is your briefing: \n" + directions);
-
-		var validans = false;
-		var resp = true;
-
-		/*while(!validans){
-			var start = alert("Ready to begin? Type 'yes' or 'no'.");
-			start = start.toUpperCase();
-			if(start === 'YES'){
-				validans = true;
-				resp = true;
-			}else if(start === 'NO'){
-				validans = true;
-				resp = false;
-			}else{
-				console.log("Sorry. Try again:\n");
-			}
-		}*/
-
-
-		if(resp === true){
-			console.log(question);
-			var aresults = results["Answer Data"];
-			for(i in aresults){
-				console.log(i.Answers);
-			}
-		}
-	}
-};
-
-req.onload();
+function kimonoCallback(e){
+    var last = e.lastsuccess;
+    e = e["results"]
+    var ans = e["Answer Data"];
+    e = e["Question Data"][0];
+    $("#data").prepend("<div id='first'><span id='date'>" + e.Date + " </span><span id='last'>Last Updated: " + last + "</span><br><br><span id='intro'>Today's question is categorized as <strong><span id='type'>" + e["Type of Question"] + "</span></strong>.</span><br><br><strong>Directions:</strong> " + e.Directions + "<br><br><strong>Question:</strong> <span id='quest'>" + e.Question + "</span><br><br><strong>Answers:</strong><br><br></div>");
+    var answers = [];
+    for(var i = 0; i < ans.length; i++){
+        answers.push(ans[i].Answers);
+    }
+    for(var i = 0; i < answers.length; i++){
+        $("#first").append("<span class='answers'>" + answers[i] + "</span><br><br><br>");
+    }
+    var parsing = true;
+    var responses = "";
+    var correct = "";
+    for(var i = 0; i < e.Stats.length; i++){
+        if(e.Stats[i] === "r"){
+            parsing = false;
+        }else{
+            if(parsing){
+                responses += e.Stats[i];
+            }
+        }
+    }
+    for(var i = 0; i < e.Stats.length; i++){
+        if(e.Stats[i] === "\n"){
+            parsing = true;
+        }
+        
+        if(e.Stats[i] === "%"){
+            parsing = false;
+        }
+        
+        if(parsing){
+            correct += e.Stats[i];
+        }
+    }
+    
+    correct = parseInt(correct);
+    var numCorrect = parseFloat("0." + correct);
+    var origResp = responses;
+    responses = parseInt(responses.split(",").join(""));
+    numCorrect = numeral(Math.ceil(responses * numCorrect)).format('0,0');
+    
+    $("#stats").append("<p>" + origResp + " people have attempted this question and approximately " + numCorrect + " (" + correct + "%) of them have gotten it right.");
+    $("#stats_button").click(function(){
+        $("stats").fadeIn();
+    });
+}
